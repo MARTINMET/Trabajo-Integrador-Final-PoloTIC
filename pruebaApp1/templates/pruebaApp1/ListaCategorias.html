@@ -1,0 +1,17 @@
+
+{% extends 'pruebas/main_template.html' %}
+    
+{% load static %}
+    
+{% block content %}
+    
+    <section class="container mt-3 m-height"> 
+        <h2 class="fw-normal fs-5 border-bottom mt-1">Categoria: <span class="fw-bold text-success"> {{categoria.nombre}} </span></h2>
+        <ul class="list-group list-group-flush">
+            
+            {% for producto in productos %}
+                       <li class="list-group-item fw-normal text-secondary d-flex justify-content-between ">{{producto.nombre}} <a href="{% url 'Vistaproducto' producto.id  %}" class="btn btn-outline-secondary rounded-pill btn-sm">ver producto</a></li>
+            {% endfor %} 
+    </section>    
+
+{% endblock %}

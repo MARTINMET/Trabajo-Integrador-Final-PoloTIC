@@ -1,0 +1,55 @@
+
+{% extends 'pruebas/main_template.html' %}
+    
+{% load static %}
+    
+{% block content %}
+
+<div class= "bg-light ">
+<section class="container mt-3  m-height bg-light">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% if productos %}
+        {% for producto in productos %}
+            {% if forloop.counter <= 3 %}
+                <div class="col mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <a href="{% url 'Vistaproducto' producto.id  %}" class="stretched-link"></a>
+                        <img src="{{producto.imagen.url}}" class="card-img-top" alt="Imagen de producto">
+                        <div class="card-body">
+                            <p class="card-text fs-6 fw-bold ">{{producto.nombre}}</p>
+                            <h5 class="card-title text-success fs-6 lead">{{producto.categoria}}</h5>
+                            <p class="card-text fs-6 fw-bold ">$ {{producto.precio}}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+        <h2 class="fw-bold fs-5 border-bottom">Mas Productos</h2>
+        <ul class="list-group list-group-flush ">
+            {% for producto in productos %}
+                  {% if forloop.counter > 3  %}
+                       <li class="list-group-item fw-normal text-secondary d-flex justify-content-between bg-light">{{producto.nombre}} <a href="{% url 'Vistaproducto' producto.id  %}" class="btn btn-outline-secondary rounded-pill btn-sm">ver producto</a></li>
+            
+                  {% endif %}
+            {% endfor %}
+        {% else %}
+        <h2 class="fw-normal fs-5 text-success mt-4"> No hay productos </h2> 
+        {% endif %}     
+        </ul>
+</section>
+</div>
+
+
+    
+
+
+{% endblock %}
+       
+   
+    
+    
+    
+    
+
+

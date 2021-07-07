@@ -1,0 +1,26 @@
+{% extends 'pruebas/secondary_template.html' %}
+    
+{% load static %}
+    
+{% block content %}
+
+
+    <div class="card text-center shadow-lg container-sm form-color ">
+        <main>
+            <h1 class=" mb-3 p-2 fs-3 fw-bold  ">¡Bienvenidx! <br> Ingresa tu Usuario y Contraseña</h1>
+            <form action=""method="post">
+              {% csrf_token %}
+               {{ form.as_p }} 
+                   
+                <input type="submit" class="btn btn-success" value="ingresar">
+            </form>
+             <div class="mt-3 mb-3 d-grid gap-2 col-6 mx-auto">
+                
+                <a href="{% url 'registro' %}" class="link-success">Crea tu cuenta</a>
+             </div>
+          
+
+        </main>
+        </div>
+
+{% endblock %}

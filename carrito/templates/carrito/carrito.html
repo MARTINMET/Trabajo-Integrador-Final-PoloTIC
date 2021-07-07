@@ -1,0 +1,68 @@
+{% extends 'pruebas/main_template.html' %}
+    
+{% load static %}
+    
+{% block content %}
+
+  <section class="container m-height">
+   
+   <div class="col-md-9 col-sm-8">
+
+            <div class="panel-body ">
+                <div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="h6">Producto</th>
+                                <th class="h6">Cantidad</th>
+                                <th class="h6">precio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+
+                                <td><span class="fw-bold ">Nombre de producto</span>
+                                    <p class="text-success">categoria</p>
+                                </td>
+                                <td>
+                                    <form class="form-inline">
+                                        <input class="form-control" type="text" value="1">
+
+                                    </form>
+                                </td>
+                                <td>{{value.precio}}</td>
+                                <td> <a href="#" class="btn btn-danger"><i class="fa fa-trash-o"></i></a></td>
+                            </tr>
+                              
+                            <tr>
+                                <td colspan="4" class="text-right"><strong>Total</strong></td>
+                                <td> $ 125 </td>
+                            </tr>       
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <a href="#" class="btn btn-success"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;Realizar Compra</a>
+            <a href="#" class="btn btn-secondary pull-right">Vaciar Carrito <span class="glyphicon glyphicon-chevron-right"><i class="fa fa-trash-o"></i></span></a>
+        </div>
+        </div>
+        </div>
+        </div>
+
+</section>
+
+    
+
+
+{% endblock %}
+       
+   
+    
+    
+    
+    
+
+

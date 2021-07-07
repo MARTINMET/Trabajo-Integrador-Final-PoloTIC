@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JaguareteKaa</title>
+
+    <!-- FONTAWESOME-->
+    <script src="https://kit.fontawesome.com/fda7920e67.js" crossorigin="anonymous"></script>
+
+    <!--GoogleFonts-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <!--EstilosCssBootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!--EstilosCustom-->
+    <link rel="stylesheet" href="{% static 'pruebas/css/custom.css' %}">
+
+</head>
+
+<!-- header Nav -->
+
+<body>
+    <div class="sticky-top">
+         <header class="navbar navbar-light bg-light ">
+            <div class="container">
+                <a class="navbar-brand logo text-success fs-4" href="{% url 'indexProducto' %}">Jaguarete<span class="text-dark">kaa</span> <i class="fas fa-leaf"></i></a>
+
+                <ul class="nav justify-content-end ">
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-bold "><i class="fas fa-user"></i> {{user.username}}</a>
+                    </li>
+                    {% if perms.carrito.view_carrito %}
+                    <li class="nav-item">
+                        <a class="nav-link text-success" href="{% url 'carrito' %}"><i class="fas fa-shopping-cart"></i></a>
+                    </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link text-secondary " aria-current="page" href="{% url 'logout' %}">Cerrar sesión</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link text-secondary" aria-current="page" href="{% url 'login' %}">Ingresá </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-secondary" href="{% url 'registro' %}">Crear Cuenta</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-success" href="{% url 'login' %}"><i class="fas fa-shopping-cart"></i></a>
+                    </li>
+
+                    {% endif %}
+                </ul>
+
+
+            </div>
+        </header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <button class="navbar-toggler mx-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+                <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'indexProducto' %}">Productos</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Categorias
+                        </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                {% if categorias %} {% for categoria in categorias %}
+                                <li><a class="dropdown-item" href="{% url 'ListaCategorias' categoria.id  %}">{{categoria.nombre}}</a></li>
+                                {% endfor %} {% else %}
+                                <li><a class="dropdown-item"> sin Categorias</a></li>
+                                {% endif %}
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'SobreNosotros' %}">Sobre Nosotros</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="mailto:jaguaretekaa@jaguaretekaa.com">Contacto</a>
+                        </li>
+                        {% if perms.pruebaApp1.add_producto %}
+                        <li class="nav-item">
+                            <a class="btn btn-success btn-sm mt-1 " href="{% url 'cargarProducto' %}">Cargar Producto</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                    <form class="d-flex" action="{% url 'listaBusqueda' %}" method="get">
+                        {% csrf_token %}
+                        <input class="form-control me-2" type="text" placeholder="Buscar" name="buscar">
+                        <button class="btn btn-outline-success btn-lg" type="submit"><i class="fas fa-search"></i></button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!--Secciones-->
+
+
+    {% block content %} {% endblock %}
+
+
+
+    <!--Secciones-->
+
+    <footer class="bg-dark">
+        <div class="container py-4">
+            <p class="logo text-white fs-6 d-flex justify-content-center mb-0">Jaguarete<span class="text-white">kaa</span><i class="fas fa-leaf"></i> &#169;</p>
+            <p class="footer text-white  d-flex justify-content-center mb-0 text-secondary">✨ Martin E. Taborda | Proyecto Final PoloTic-Misiones ✨ </p>
+
+        </div>
+
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

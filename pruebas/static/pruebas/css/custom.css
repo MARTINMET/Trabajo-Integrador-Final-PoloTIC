@@ -1,0 +1,23 @@
+/* CSS CUSTOM*/
+
+.logo {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+}
+
+.bg-imagenNosotros {
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.m-height {
+    min-height: calc(100vh - 214px);
+}
+
+.form-color {
+    background-color: #f0f0f0;
+}
+
+.footer {
+    font-size: .7rem;
+}

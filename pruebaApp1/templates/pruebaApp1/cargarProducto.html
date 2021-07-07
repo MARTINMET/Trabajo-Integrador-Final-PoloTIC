@@ -1,0 +1,39 @@
+
+{% extends 'pruebas/main_template.html' %}
+    
+{% load static %}
+    
+{% block content %}
+
+   <div class="card text-center shadow-lg container mb-3 ">
+            
+            <h2 class=" mb-3 p-2 fs-3 fw-bold  ">Cargar Nuevo Producto</h2>
+       
+            <form action="" method="post" enctype='multipart/form-data'>
+                {% csrf_token %}
+
+                {{ form.as_p }}
+                
+                
+                <div class="mt-3 mb-3 d-grid gap-2 col-6 mx-auto">
+                    <button type="submit" class="btn btn-success">Cargar</button>
+                    <button type="reset" class="btn btn-success">Cancelar</button>
+                </div>
+            </form>
+
+      
+    </div>
+
+
+    
+
+
+{% endblock %}
+       
+   
+    
+    
+    
+    
+
+
